@@ -39,7 +39,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'flore.apps.FloreConfig',
-    'rest_framework'
+
+    'rest_framework',
+    'rest_framework.authtoken',
+
+    'django_extensions',
+    'django_filters'
 ]
 
 MIDDLEWARE = [
@@ -71,6 +76,17 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'src.wsgi.application'
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+    'PAGE_SIZE': 100
+}
 
 
 # Database
