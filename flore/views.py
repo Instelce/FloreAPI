@@ -11,15 +11,15 @@ from flore.permissions import IsSuperUser
 from flore.mixins import PermissionPolicyMixin
 
 
-class PlantModelViewSet(ModelViewSet):
+class PlantModelViewSet(PermissionPolicyMixin, ModelViewSet):
     queryset = Plant.objects.all()
     pagination_class = PageNumberPagination
 
     permission_classes = [IsAuthenticated]
     permission_classes_per_method = {
-        "create": [IsAuthenticated, IsSuperUser],
-        "delete": [IsAuthenticated, IsSuperUser],
-        "update": [IsAuthenticated, IsSuperUser],
+        "create": [IsSuperUser],
+        "destroy": [IsSuperUser],
+        "partial_update": [IsSuperUser],
     }
 
     filter_backends = (SearchFilter, OrderingFilter, DjangoFilterBackend)
@@ -33,14 +33,15 @@ class PlantModelViewSet(ModelViewSet):
         return WritePlantSerializer
 
 
-class ImageModelViewSet(ModelViewSet):
+class ImageModelViewSet(PermissionPolicyMixin, ModelViewSet):
     queryset = Image.objects.select_related("plant")
     pagination_class = PageNumberPagination
+
     permission_classes = [IsAuthenticated]
     permission_classes_per_method = {
-        "create": [IsAuthenticated, IsSuperUser],
-        "delete": [IsAuthenticated, IsSuperUser],
-        "update": [IsAuthenticated, IsSuperUser],
+        "create": [IsSuperUser],
+        "destroy": [IsSuperUser],
+        "partial_update": [IsSuperUser],
     }
 
     def get_serializer_class(self):
