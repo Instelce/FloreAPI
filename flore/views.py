@@ -37,6 +37,10 @@ class ImageModelViewSet(PermissionPolicyMixin, ModelViewSet):
     queryset = Image.objects.select_related("plant")
     pagination_class = PageNumberPagination
 
+    filter_backends = (SearchFilter, OrderingFilter, DjangoFilterBackend)
+    ordering_fields = ("publ_date")
+    filterset_fields = ("plant__id", "organ")
+
     permission_classes = [IsAuthenticated]
     permission_classes_per_method = {
         "create": [IsSuperUser],
