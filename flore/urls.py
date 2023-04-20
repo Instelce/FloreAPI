@@ -9,5 +9,5 @@ router.register(r'images', ImageModelViewSet, basename='images')
 
 
 urlpatterns = [
-    path('', include(router.urls))
+    path('', include(router.urls)),
 ]

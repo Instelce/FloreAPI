@@ -1,12 +1,20 @@
 from django.db import models
 
 
+class Family(models.Model):
+    name = models.CharField(max_length=100)
+
+
+class Genre(models.Model):
+    name = models.CharField(max_length=100)
+
+
 class Plant(models.Model):
     num_inpn = models.CharField(default='', max_length=9)
     rank_code = models.CharField(default='', max_length=9)
 
-    family = models.CharField(default='', max_length=100)
-    genre = models.CharField(default='', max_length=100)
+    family = models.ForeignKey(Family, on_delete=models.CASCADE)
+    genre = models.ForeignKey(Genre, on_delete=models.CASCADE)
 
     scientific_name = models.CharField(default='', max_length=500)
     correct_name = models.CharField(default='', max_length=500)

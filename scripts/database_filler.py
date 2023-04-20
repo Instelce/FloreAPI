@@ -23,7 +23,7 @@ def run():
         json_data = json.load(open("./json_data/" + file, 'r'))
 
         for plant_data in json_data.values():
-            if int(plant_data['id']) < 100:
+            if int(plant_data['id']) < 200:
                 plant = Plant.objects.create(
                     id=plant_data['id'],
                     num_inpn=plant_data['num_inpn'],
