@@ -1,6 +1,18 @@
 from rest_framework import serializers
 
-from flore.models import Image, Plant
+from flore.models import Family, Genre, Image, Plant
+
+
+class PlantFamilySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Family
+        fields = ['id', 'name']
+
+
+class PlantGenreSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Genre
+        fields = ['id', 'name']
 
 
 class WritePlantSerializer(serializers.ModelSerializer):
@@ -21,6 +33,9 @@ class WritePlantSerializer(serializers.ModelSerializer):
 
 
 class ReadPlantSerializer(serializers.ModelSerializer):
+    family = serializers.SlugRelatedField(slug_field='name', queryset=Family.objects.all())
+    genre = serializers.SlugRelatedField(slug_field='name', queryset=Genre.objects.all())
+
     class Meta:
         model = Plant
         fields = [
@@ -35,7 +50,7 @@ class ReadPlantSerializer(serializers.ModelSerializer):
             'author',
             'publ_year',
             'eflore_url'
-        ]
+        ] 
         read_only_fields = fields
 
 

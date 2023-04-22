@@ -10,4 +10,6 @@ router.register(r'images', ImageModelViewSet, basename='images')
 
 urlpatterns = [
     path('', include(router.urls)),
+    path('families', FamilyView.as_view(), name='families'),
+    path('genres', GenreView.as_view(), name='genres'),
 ]

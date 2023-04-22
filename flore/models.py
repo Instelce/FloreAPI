@@ -2,19 +2,19 @@ from django.db import models
 
 
 class Family(models.Model):
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, unique=True)
 
 
 class Genre(models.Model):
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, unique=True)
 
 
 class Plant(models.Model):
     num_inpn = models.CharField(default='', max_length=9)
     rank_code = models.CharField(default='', max_length=9)
 
-    family = models.ForeignKey(Family, on_delete=models.CASCADE)
-    genre = models.ForeignKey(Genre, on_delete=models.CASCADE)
+    family = models.ForeignKey(Family, on_delete=models.CASCADE, related_name="plants")
+    genre = models.ForeignKey(Genre, on_delete=models.CASCADE, related_name="plants")
 
     scientific_name = models.CharField(default='', max_length=500)
     correct_name = models.CharField(default='', max_length=500)
@@ -43,4 +43,4 @@ class Image(models.Model):
     publ_date = models.DateField(default='')
     organ = models.CharField(choices=ORGAN_CHOICES, default='NONE', max_length=10)
     url = models.URLField(blank=False)
-    plant = models.ForeignKey(Plant, on_delete=models.CASCADE)
+    plant = models.ForeignKey(Plant, on_delete=models.CASCADE, related_name="images")
