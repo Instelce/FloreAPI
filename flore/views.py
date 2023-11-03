@@ -1,4 +1,6 @@
-from rest_framework.permissions import IsAuthenticated
+import random
+
+from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.filters import SearchFilter, OrderingFilter
@@ -37,16 +39,17 @@ class PlantModelViewSet(PermissionPolicyMixin, ModelViewSet):
     queryset = Plant.objects.select_related("family", "genre")
     pagination_class = PageNumberPagination
 
-    permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
     permission_classes_per_method = {
         "create": [IsSuperUser],
         "destroy": [IsSuperUser],
+        "update": [IsSuperUser],
         "partial_update": [IsSuperUser],
     }
 
     filter_backends = (PlantSearchFilter, OrderingFilter, DjangoFilterBackend)
     ordering_fields = ("family", "genre", "scientific_name", "correct_name", "french_name")
-    filterset_fields = ("rank_code", "family", "genre", "author")
+    filterset_fields = ("rank_code", "family__name", "genre__name", "author")
 
     def get_serializer_class(self):
         if self.action in ('list', 'retrieve'):
@@ -62,10 +65,11 @@ class ImageModelViewSet(PermissionPolicyMixin, ModelViewSet):
     ordering_fields = ("publ_date")
     filterset_fields = ("plant__id", "organ")
 
-    permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
     permission_classes_per_method = {
         "create": [IsSuperUser],
         "destroy": [IsSuperUser],
+        "update": [IsSuperUser],
         "partial_update": [IsSuperUser],
     }
 
@@ -73,3 +77,38 @@ class ImageModelViewSet(PermissionPolicyMixin, ModelViewSet):
         if self.action in ('list', 'retrieve'):
             return ReadImageSerializer
         return WriteImageSerializer
+
+
+class GetRandomPlantsView(APIView):
+    def get(self, request, number, format=None):
+        ids = []
+        plants = []
+        min_id = None
+        max_id = None
+
+        if 'family' in self.request.query_params.keys():
+            plants_data = Plant.objects.all().filter(family__name__exact=self.request.query_params.get('family'))
+            for plant in plants_data:
+                ids.append(plant.id)
+        else:
+            min_id = Plant.objects.order_by('id')[0].id
+            max_id = Plant.objects.order_by('-id')[0].id
+
+        for i in range(number):
+            if 'family' in self.request.query_params.keys():
+                random_id = random.choice(ids)
+            else:
+                random_id = random.randint(min_id, max_id)
+            plant = Plant.objects.filter(id=random_id)[0]
+
+            while plant in plants:
+                if 'family' in self.request.query_params.keys():
+                    random_id = random.choice(ids)
+                else:
+                    random_id = random.randint(min_id, max_id)
+                plant = Plant.objects.filter(id=random_id)[0]
+
+            plants.append(Plant.objects.filter(id=random_id)[0])
+
+        serializer = ReadPlantSerializer(plants, many=True)
+        return Response(serializer.data)
