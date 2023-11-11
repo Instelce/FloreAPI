@@ -48,6 +48,7 @@ class PlantModelViewSet(PermissionPolicyMixin, ModelViewSet):
     }
 
     filter_backends = (PlantSearchFilter, OrderingFilter, DjangoFilterBackend)
+    search_fields = ("french_name",)
     ordering_fields = ("family", "genre", "scientific_name", "correct_name", "french_name")
     filterset_fields = ("rank_code", "family__name", "genre__name", "author")
 
@@ -57,13 +58,68 @@ class PlantModelViewSet(PermissionPolicyMixin, ModelViewSet):
         return WritePlantSerializer
 
 
+class GetRandomPlantsView(APIView):
+    def get(self, request, number, format=None):
+        ids = []
+        plants = []
+        min_id = None
+        max_id = None
+        family = 'family' in self.request.query_params.keys()
+
+        if family:
+            plants_data = Plant.objects.all().filter(family__name__exact=self.request.query_params.get('family'))
+            for plant in plants_data:
+                ids.append(plant.id)
+        else:
+            min_id = Plant.objects.order_by('id')[0].id
+            max_id = Plant.objects.order_by('-id')[0].id
+
+        for i in range(number):
+            if family:
+                random_id = random.choice(ids)
+            else:
+                random_id = random.randint(min_id, max_id)
+
+            plant = Plant.objects.filter(id=random_id)[0]
+
+            while plant in plants:
+                if family:
+                    random_id = random.choice(ids)
+                else:
+                    random_id = random.randint(min_id, max_id)
+                plant = Plant.objects.filter(id=random_id)[0]
+
+            plants.append(plant)
+
+        serializer = ReadPlantSerializer(plants, many=True)
+        return Response(serializer.data)
+
+
+class PlantsIdsListView(APIView):
+    def get(self, request, format=None):
+        if 'ids' in request.query_params.keys():
+            ids = [int(id) for id in request.query_params['ids'].split(',')]
+            plants = []
+
+            for id in ids:
+                print(id)
+                plants.append(Plant.objects.filter(id=id)[0])
+
+            for plant in plants:
+                print(plant.french_name)
+
+            serializer = ReadPlantSerializer(plants, many=True)
+            return Response(serializer.data)
+        return Response({"detail": "List query param is missing"})
+
+
 class ImageModelViewSet(PermissionPolicyMixin, ModelViewSet):
     queryset = Image.objects.select_related("plant")
     pagination_class = PageNumberPagination
 
-    filter_backends = (SearchFilter, OrderingFilter, DjangoFilterBackend)
-    ordering_fields = ("publ_date")
-    filterset_fields = ("plant__id", "organ")
+    filter_backends = (OrderingFilter, DjangoFilterBackend)
+    ordering_fields = ("publ_date",)
+    filterset_fields = ("plant__id", "plant__french_name", "organ")
 
     permission_classes = [AllowAny]
     permission_classes_per_method = {
@@ -77,38 +133,3 @@ class ImageModelViewSet(PermissionPolicyMixin, ModelViewSet):
         if self.action in ('list', 'retrieve'):
             return ReadImageSerializer
         return WriteImageSerializer
-
-
-class GetRandomPlantsView(APIView):
-    def get(self, request, number, format=None):
-        ids = []
-        plants = []
-        min_id = None
-        max_id = None
-
-        if 'family' in self.request.query_params.keys():
-            plants_data = Plant.objects.all().filter(family__name__exact=self.request.query_params.get('family'))
-            for plant in plants_data:
-                ids.append(plant.id)
-        else:
-            min_id = Plant.objects.order_by('id')[0].id
-            max_id = Plant.objects.order_by('-id')[0].id
-
-        for i in range(number):
-            if 'family' in self.request.query_params.keys():
-                random_id = random.choice(ids)
-            else:
-                random_id = random.randint(min_id, max_id)
-            plant = Plant.objects.filter(id=random_id)[0]
-
-            while plant in plants:
-                if 'family' in self.request.query_params.keys():
-                    random_id = random.choice(ids)
-                else:
-                    random_id = random.randint(min_id, max_id)
-                plant = Plant.objects.filter(id=random_id)[0]
-
-            plants.append(Plant.objects.filter(id=random_id)[0])
-
-        serializer = ReadPlantSerializer(plants, many=True)
-        return Response(serializer.data)
