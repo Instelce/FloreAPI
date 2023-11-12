@@ -50,7 +50,7 @@ class ReadPlantSerializer(serializers.ModelSerializer):
             'author',
             'publ_year',
             'eflore_url'
-        ] 
+        ]
         read_only_fields = fields
 
 
@@ -82,3 +82,24 @@ class ReadImageSerializer(serializers.ModelSerializer):
             'plant'
         ]
         read_only_fields = fields
+
+
+class ReadImageNoPlantSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Image
+        fields = [
+            'id',
+            'author',
+            'location',
+            'publ_date',
+            'organ',
+            'url',
+        ]
+        read_only_fields = fields
+
+
+class PlantsImagesSerializer(serializers.Serializer):
+    id = serializers.ReadOnlyField()
+    images = serializers.ListField(
+        child=ReadImageNoPlantSerializer(),
+    )

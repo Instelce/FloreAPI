@@ -110,7 +110,7 @@ class PlantsIdsListView(APIView):
 
             serializer = ReadPlantSerializer(plants, many=True)
             return Response(serializer.data)
-        return Response({"detail": "List query param is missing"})
+        return Response({"detail": "'ids' query param is missing"})
 
 
 class ImageModelViewSet(PermissionPolicyMixin, ModelViewSet):
@@ -133,3 +133,21 @@ class ImageModelViewSet(PermissionPolicyMixin, ModelViewSet):
         if self.action in ('list', 'retrieve'):
             return ReadImageSerializer
         return WriteImageSerializer
+
+
+class PlantsIdsListImagesView(APIView):
+    def get(self, request, format=None):
+        if 'ids' in request.query_params.keys():
+            ids = [int(id) for id in request.query_params['ids'].split(',')]
+            data = []
+
+            for id in ids:
+                print(id)
+                data.append({
+                    'id': id,
+                    'images': Image.objects.filter(plant_id=id)
+                })
+
+            serializer = PlantsImagesSerializer(data, many=True)
+            return Response(serializer.data)
+        return Response({"detail": "'plants_ids' query param is missing"})
