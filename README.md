@@ -1,10 +1,97 @@
 # FloreAPI
 
-API non officiel de la Base de données des Trachéophytes de France métropolitaine et régions avoisinantes (bdtfx) de Tela Botanica, avec des images d'identiplante.
+API non officiel et open source de la Base de données des Trachéophytes de France métropolitaine et régions avoisinantes (bdtfx) de Tela Botanica, avec des **images** d'identiplante.
 
-# Lien
+## Table des matières
 
-- [Workspace Postman](https://elements.getpostman.com/redirect?entityId=21084913-a3dd929b-bfde-416d-89e0-91cf3a01270e&entityType=collection)
+* [À propos du projet](#à-propos-du-projet)
+* [Construit avec](#construit-avec)
+* [Pour commencer](#pour-commencer)
+  * [Prérequis](#prérequis)
+  * [Installation](#installation)
+* [Contributions](#contributions)
+* [Auteurs](#autheurs)
+* [Remerciements](#remerciements)
+
+## À propos du projet
+
+FloreAPI est une api pour obtenir des images de plante classé par plante. Les données des plantes sont tiré du site Tela botanica et les images d'Identiplante.
+
+## Construit avec
+
+* Django
+* Django Rest Framework.
+
+## Pour commencer
+
+Pour mettre en place une copie locale de l'API et de la faire fonctionner, suivez ces étapes simples.
+
+### Prérequis
+
+* télécharger les données pour remplir la bdd [ici]()
+* télécharger [python](https://www.python.org/)
+
+### Installation
+
+1. Cloner le repo
+
+```shell
+git clone https://github.com/<Votre-Pseudo>/FloreAPI.git
+```
+
+2. Créer un environnement virtuel et activez le
+
+```shell
+python -m venv env
+./env/scripts/activate
+```
+
+3. Installer les dépendances
+```shell
+pip install -r requirements.txt
+```
+
+4. Créer la bdd
+
+```shell
+python ./manage.py migrate
+```
+
+6. Déziper le fichier `json_data` que vous avez télécharger et placer le dans le repo
+
+7. Remplir la bdd
+
+```shell
+python .\manage.py runscript database_filler
+```
+
+8. Lancer le serveur de développement
+
+```shell
+python ./manage.py runserver
+```
+
+## Contributions
+Les contributions sont ce qui fait de la communauté open source un endroit si incroyable pour apprendre, inspirer et créer. Toutes les contributions que vous faites sont grandement appréciées.
+
+* Si vous avez des suggestions pour ajouter ou supprimer des projets, n’hésitez pas à ouvrir une issue pour en discuter, ou à créer directement une Pull Request après avoir ajouter votre fonctionnalité.
+* Assurez-vous de vérifier votre orthographe et votre grammaire.
+* Créez une Pull Request individuelle pour chaque suggestion.
+
+### Créer une Pull Request
+
+* Fork le projet
+* Créer ta banche (git checkout -b feature/SuperFonctionnalité)
+* Commit tes changements (git commit -m 'Ajout d'une SuperFonctionnalité')
+* Push vers ta branche (git push origin feature/SuperFonctionnalité)
+* Ouvre une Pull Request
+
+# Auteurs
+
+* *Célestin* - **Etudiant** - Instelce - Discord `instelce`
+
+## Remerciements
+
 - [Tela Botanica](https://www.tela-botanica.org/)
 - [Identiplante](https://www.tela-botanica.org/appli:identiplante)
 - [BDTFX](http://referentiels.tela-botanica.org/referentiel/index.php?module=Informations&ref=bdtfx)
