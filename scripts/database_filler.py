@@ -60,10 +60,13 @@ def run():
                 organs = plant_data['images']['organes']
                 for organ_name, images in organs.items():
                     for image_data in images.values():
+                        date = image_data['date'].split(' ')[0].split('-')
+                        if date[-1] == '00':
+                            date[-1] = '01'
                         image = Image.objects.create(
                             author=image_data['auteur'],
                             location=image_data['localisation'],
-                            publ_date=datetime.strptime(image_data['date'].split(' ')[0], "%Y-%m-%d"),
+                            publ_date=datetime.strptime('-'.join(date), "%Y-%m-%d"),
                             organ=organ_translation[organ_name].upper(),
                             url=image_data['url'],
                             plant=plant
@@ -83,7 +86,7 @@ def run():
                         )
                     image.save()
 
-                print(plant.scientific_name, plant.num_inpn)
+                print(plant.scientific_name, plant_data['id'])
             # else:
             #     break
 
