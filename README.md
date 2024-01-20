@@ -47,11 +47,14 @@ python -m venv env
 ```
 
 3. Installer les dépendances
+
 ```shell
 pip install -r requirements.txt
 ```
 
-4. Créer la bdd
+4. Dupliquez le fichier `.env.example` et renommez le `.env` et remplisser le.
+
+5. Créer les tables
 
 ```shell
 python ./manage.py migrate
@@ -72,11 +75,11 @@ python ./manage.py runserver
 ```
 
 ## Contributions
-Les contributions sont ce qui fait de la communauté open source un endroit si incroyable pour apprendre, inspirer et créer. Toutes les contributions que vous faites sont grandement appréciées.
+
+Les contributions que vous faites seront grandement appréciées.
 
 * Si vous avez des suggestions pour ajouter ou supprimer des projets, n’hésitez pas à ouvrir une issue pour en discuter, ou à créer directement une Pull Request après avoir ajouter votre fonctionnalité.
 * Assurez-vous de vérifier votre orthographe et votre grammaire.
-* Créez une Pull Request individuelle pour chaque suggestion.
 
 ### Créer une Pull Request
 
