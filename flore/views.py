@@ -64,8 +64,12 @@ class GetRandomPlantsView(APIView):
         plants = []
         min_id = None
         max_id = None
-        family = 'family' in self.request.query_params.keys()
 
+        # Params
+        family = 'family' in self.request.query_params.keys()
+        include_images = 'images' in self.request.query_params.keys() and self.request.query_params['images'] == 'true'
+
+        # Filter by family
         if family:
             plants_data = Plant.objects.all().filter(family__name__exact=self.request.query_params.get('family'))
             for plant in plants_data:
@@ -74,25 +78,45 @@ class GetRandomPlantsView(APIView):
             min_id = Plant.objects.order_by('id')[0].id
             max_id = Plant.objects.order_by('-id')[0].id
 
+        # Get random plants
         for i in range(number):
             if family:
                 random_id = random.choice(ids)
             else:
                 random_id = random.randint(min_id, max_id)
 
-            plant = Plant.objects.filter(id=random_id)[0]
+            plant = self.get_plant_data(Plant.objects.filter(id=random_id)[0], include_images)
 
             while plant in plants:
-                if family:
-                    random_id = random.choice(ids)
-                else:
-                    random_id = random.randint(min_id, max_id)
-                plant = Plant.objects.filter(id=random_id)[0]
+                random_id = random.choice(ids) if family else random.randint(min_id, max_id)
+                plant = self.get_plant_data(Plant.objects.filter(id=random_id)[0], include_images)
 
             plants.append(plant)
 
-        serializer = ReadPlantSerializer(plants, many=True)
+        serializer = CompletePlantImagesSerializer(plants, many=True)
         return Response(serializer.data)
+
+    @staticmethod
+    def get_plant_data(plant, include_images=False):
+        plant_data = {
+            'id': plant.id,
+            'french_name': plant.french_name,
+            'family': plant.family,
+            'genre': plant.genre,
+            'scientific_name': plant.scientific_name,
+            'correct_name': plant.correct_name,
+            'author': plant.author,
+            'publ_year': plant.publ_year,
+            'eflore_url': plant.eflore_url,
+            'images': []
+        }
+
+        if include_images:
+            plant_data['images'] = ReadImageNoPlantSerializer(
+                Image.objects.filter(plant_id=plant.id), many=True
+            ).data
+
+        return plant_data
 
 
 class PlantsIdsListView(APIView):
@@ -148,6 +172,24 @@ class PlantsIdsListImagesView(APIView):
                     'images': Image.objects.filter(plant_id=id)
                 })
 
-            serializer = PlantsImagesSerializer(data, many=True)
+            serializer = PlantImagesSerializer(data, many=True)
             return Response(serializer.data)
         return Response({"detail": "'plants_ids' query param is missing"})
+
+
+class ImagesIdsListView(APIView):
+    def get(self, request, format=None):
+        if 'ids' in request.query_params.keys():
+            ids = [int(id) for id in request.query_params['ids'].split(',')]
+            images = []
+
+            for id in ids:
+                images.append(Image.objects.get(id=id))
+
+            if 'with_plants' in request.query_params.keys() and request.query_params['with_plants'] == 'true':
+                serializer = ReadImageSerializer(images, many=True)
+            else:
+                serializer = ReadImageNoPlantSerializer(images, many=True)
+
+            return Response(serializer.data)
+        return Response({"detail": "'ids' query param is missing"})
