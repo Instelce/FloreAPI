@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="7c9cd940-9c80-4616-b38b-d507565805db" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.env.example" beforeDir="false" afterPath="$PROJECT_DIR$/.env.example" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/FloreAPI.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/FloreAPI.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/discord.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/flore-api/core/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/flore-api/users/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/flore-api/core/apps.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/management/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/flore-api/core/management/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/management/commands/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/flore-api/core/management/commands/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/management/commands/wait_for_db.py" beforeDir="false" afterPath="$PROJECT_DIR$/flore-api/core/management/commands/wait_for_db.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/migrations/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/flore-api/core/migrations/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/flore-api/users/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/flore-api/flore/tests.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/views.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/database-shema.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flore/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/flore-api/flore/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flore/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/flore-api/flore/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flore/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/flore-api/flore/apps.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flore/filters.py" beforeDir="false" afterPath="$PROJECT_DIR$/flore-api/flore/filters.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flore/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/flore-api/flore/migrations/0001_initial.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flore/migrations/0002_image_url.py" beforeDir="false" afterPath="$PROJECT_DIR$/flore-api/flore/migrations/0002_image_url.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flore/migrations/0003_plant_eflore_id.py" beforeDir="false" afterPath="$PROJECT_DIR$/flore-api/flore/migrations/0003_plant_eflore_id.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flore/migrations/0004_alter_plant_eflore_id.py" beforeDir="false" afterPath="$PROJECT_DIR$/flore-api/flore/migrations/0004_alter_plant_eflore_id.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flore/migrations/0005_remove_plant_eflore_id.py" beforeDir="false" afterPath="$PROJECT_DIR$/flore-api/flore/migrations/0005_remove_plant_eflore_id.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flore/migrations/0006_family_genre_alter_plant_family_alter_plant_genre.py" beforeDir="false" afterPath="$PROJECT_DIR$/flore-api/flore/migrations/0006_family_genre_alter_plant_family_alter_plant_genre.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flore/migrations/0007_alter_family_name_alter_genre_name.py" beforeDir="false" afterPath="$PROJECT_DIR$/flore-api/flore/migrations/0007_alter_family_name_alter_genre_name.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flore/migrations/0008_alter_image_plant_alter_plant_family_and_more.py" beforeDir="false" afterPath="$PROJECT_DIR$/flore-api/flore/migrations/0008_alter_image_plant_alter_plant_family_and_more.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flore/migrations/0009_alter_plant_french_name.py" beforeDir="false" afterPath="$PROJECT_DIR$/flore-api/flore/migrations/0009_alter_plant_french_name.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flore/migrations/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/flore-api/flore/migrations/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flore/mixins.py" beforeDir="false" afterPath="$PROJECT_DIR$/flore-api/flore/mixins.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flore/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/flore-api/flore/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flore/permissions.py" beforeDir="false" afterPath="$PROJECT_DIR$/flore-api/flore/permissions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flore/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/flore-api/flore/serializers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flore/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/flore-api/users/tests.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flore/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/flore-api/flore/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flore/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/flore-api/flore/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/manage.py" beforeDir="false" afterPath="$PROJECT_DIR$/flore-api/manage.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/flore-api/scripts/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/database_filler.py" beforeDir="false" afterPath="$PROJECT_DIR$/flore-api/scripts/database_filler.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/flore-api/src/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/asgi.py" beforeDir="false" afterPath="$PROJECT_DIR$/flore-api/src/asgi.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/flore-api/src/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/flore-api/src/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wsgi.py" beforeDir="false" afterPath="$PROJECT_DIR$/flore-api/src/wsgi.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/flore-api/users/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users/admin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/users/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/flore-api/users/apps.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users/migrations/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/flore-api/users/migrations/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users/models.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/users/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/flore-api/users/serializers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users/tests.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/users/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/flore-api/users/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/flore-api/users/views.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
+    <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Dockerfile" />
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="JsbtTreeLayoutManager">
+    <layout place="tools.popupGrunt">
+      <scroll-view-position x="0" y="0" />
+    </layout>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
+  <component name="ProjectId" id="2bdsMYjyAQpjbnPwL0ijMJk1eUG" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="false" />
+    <option name="showLibraryContents" value="true" />
+    <option name="showScratchesAndConsoles" value="false" />
+    <option name="sortByType" value="true" />
+    <option name="sortKey" value="BY_TYPE" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenDjangoStructureViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/celes/documents/lab/FloreAPI/src&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/flore-api" />
+    </key>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-python-sdk-50da183f06c8-2887949eec09-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-233.13135.95" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="7c9cd940-9c80-4616-b38b-d507565805db" name="Changes" comment="" />
+      <created>1706556242800</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1706556242800</updated>
+      <workItem from="1706556243849" duration="21000" />
+      <workItem from="1706799521357" duration="690000" />
+      <workItem from="1706866407192" duration="2820000" />
+      <workItem from="1707044090382" duration="603000" />
+      <workItem from="1707076484647" duration="2091000" />
+      <workItem from="1707082491578" duration="31000" />
+      <workItem from="1707394916790" duration="8185000" />
+      <workItem from="1707407196984" duration="512000" />
+      <workItem from="1707407715887" duration="630000" />
+      <workItem from="1707408363798" duration="5748000" />
+      <workItem from="1707476718296" duration="1458000" />
+      <workItem from="1707478870014" duration="5872000" />
+      <workItem from="1707580863217" duration="15000" />
+      <workItem from="1707677096486" duration="3120000" />
+      <workItem from="1707682926595" duration="4216000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

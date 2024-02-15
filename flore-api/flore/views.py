@@ -6,9 +6,9 @@ from rest_framework.pagination import PageNumberPagination
 from rest_framework.filters import SearchFilter, OrderingFilter
 from rest_framework.views import APIView
 from django_filters.rest_framework import DjangoFilterBackend
-from flore.filters import PlantSearchFilter
 from rest_framework.response import Response
 
+from flore.filters import PlantSearchFilter
 from flore.models import Image, Plant
 from flore.serializers import *
 from flore.permissions import IsSuperUser
@@ -79,19 +79,25 @@ class GetRandomPlantsView(APIView):
             max_id = Plant.objects.order_by('-id')[0].id
 
         # Get random plants
-        for i in range(number):
+        i = 0
+        while i < number:
             if family:
                 random_id = random.choice(ids)
             else:
                 random_id = random.randint(min_id, max_id)
 
-            plant = self.get_plant_data(Plant.objects.filter(id=random_id)[0], include_images)
-
-            while plant in plants:
-                random_id = random.choice(ids) if family else random.randint(min_id, max_id)
+            if Plant.objects.filter(id=random_id).count() > 0:
                 plant = self.get_plant_data(Plant.objects.filter(id=random_id)[0], include_images)
 
-            plants.append(plant)
+                while plant in plants:
+                    if family:
+                        random_id = random.choice(ids)
+                    else:
+                        random_id = random.randint(min_id, max_id)
+                    plant = self.get_plant_data(Plant.objects.filter(id=random_id)[0], include_images)
+
+                plants.append(plant)
+                i += 1
 
         serializer = CompletePlantImagesSerializer(plants, many=True)
         return Response(serializer.data)
@@ -141,10 +147,6 @@ class ImageModelViewSet(PermissionPolicyMixin, ModelViewSet):
     queryset = Image.objects.select_related("plant")
     pagination_class = PageNumberPagination
 
-    filter_backends = (OrderingFilter, DjangoFilterBackend)
-    ordering_fields = ("publ_date",)
-    filterset_fields = ("plant__id", "plant__french_name", "organ")
-
     permission_classes = [AllowAny]
     permission_classes_per_method = {
         "create": [IsSuperUser],
@@ -152,6 +154,10 @@ class ImageModelViewSet(PermissionPolicyMixin, ModelViewSet):
         "update": [IsSuperUser],
         "partial_update": [IsSuperUser],
     }
+
+    filter_backends = [OrderingFilter, DjangoFilterBackend]
+    ordering_fields = ("publ_date",)
+    filterset_fields = ("plant__id", "plant__french_name", "organ")
 
     def get_serializer_class(self):
         if self.action in ('list', 'retrieve'):
