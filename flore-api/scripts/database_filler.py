@@ -81,8 +81,12 @@ def save_file_data(filename):
             percent = (plant_data['id'] * 100) / 171041
             print(plant_data['id'], f"~ {round(percent, 3)}%")
 
+    with open("scripts/logs.json", "+a") as log_file:
+        data = json.loads(log_file.read())
+        print(data)
 
-def run():
+
+def runa():
     data_files = os.listdir('json_data')
     plant_with_images = 0
     image_count = 0
@@ -99,7 +103,7 @@ def run():
             print(f"Images count: {image_count}")
 
 
-def runa():
+def run():
     data_files = os.listdir('json_data')
     print(data_files)
     data_files.sort()
@@ -109,10 +113,6 @@ def runa():
     Genre.objects.all().delete()
     Plant.objects.all().delete()
     Image.objects.all().delete()
-
-    # make this but with threads
-    # for file in data_files:
-    #     save_file_data(file)
 
     with concurrent.futures.ThreadPoolExecutor(max_workers=20) as executor:
         executor.map(save_file_data, data_files)

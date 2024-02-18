@@ -1,0 +1,279 @@
+openapi: 3.0.0
+info:
+  title: Plant API
+  description: API for managing plants and their images. All data is provided by the Tela Botanica eFlore database.
+  version: 1.0.0
+servers:
+  - url: http://104.248.160.134/api
+paths:
+  /plants:
+    get:
+      summary: Retrieve a list of plants
+      responses:
+        '200':
+          description: A list of plants
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    description: The total count of plants
+                  next:
+                    type: string
+                    description: The URL for the next page of results
+                  previous:
+                    type: string
+                    description: The URL for the previous page of results
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Plant'
+  /plants/{id}:
+    get:
+      summary: Retrieve plant data by ID
+      responses:
+        '200':
+          description: Plant data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Plant'
+  /images:
+    get:
+      summary: Retrieve a list of images
+      responses:
+        '200':
+          description: A list of images
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Image'
+  /images/{id}:
+    get:
+      summary: Retrieve image data by ID
+      responses:
+        '200':
+          description: Image data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Image'
+  /families:
+    get:
+      summary: Retrieve a list of plant families
+      responses:
+        '200':
+          description: A list of plant families
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Family'
+  /genres:
+    get:
+      summary: Retrieve a list of plant genres
+      responses:
+        '200':
+          description: A list of plant genres
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Genre'
+  /plants-list:
+    get:
+      summary: Retrieve a list of plants by IDs
+      parameters:
+        - name: ids
+          in: query
+          description: Comma-separated list of plant IDs
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A list of plants
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Plant'
+  /plants-list/images:
+    get:
+      summary: Retrieve a list of images for plants by IDs
+      parameters:
+        - name: ids
+          in: query
+          description: Comma-separated list of plant IDs
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A list of plant images
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PlantImages'
+  /images-list:
+    get:
+      summary: Retrieve a list of images by IDs
+      parameters:
+        - name: ids
+          in: query
+          description: Comma-separated list of image IDs
+          required: true
+          schema:
+            type: string
+        - name: with_plant
+          in: query
+          description: Include plant data
+          required: false
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: A list of images
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Image'
+  /plants/random/{number}:
+    get:
+      summary: Retrieve random plants
+      parameters:
+        - name: number
+          in: path
+          description: Number of random plants to retrieve
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: images
+          in: query
+          description: Include images
+          required: false
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: A list of random plants
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CompletePlantImages'
+components:
+  schemas:
+    Family:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+    Genre:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+    Plant:
+      type: object
+      properties:
+        id:
+          type: integer
+        num_inpn:
+          type: string
+        rank_code:
+          type: string
+        family:
+          $ref: '#/components/schemas/Family'
+        genre:
+          $ref: '#/components/schemas/Genre'
+        scientific_name:
+          type: string
+        correct_name:
+          type: string
+        french_name:
+          type: string
+        author:
+          type: string
+        publ_year:
+          type: integer
+        eflore_url:
+          type: string
+      required:
+        - id
+        - scientific_name
+        - correct_name
+        - french_name
+        - author
+        - eflore_url
+    Image:
+      type: object
+      properties:
+        id:
+          type: integer
+        author:
+          type: string
+        location:
+          type: string
+        publ_date:
+          type: string
+          format: date
+        organ:
+          type: string
+        url:
+          type: string
+        plant:
+          $ref: '#/components/schemas/Plant'
+    PlantImages:
+      type: object
+      properties:
+        id:
+          type: integer
+        images:
+          type: array
+          items:
+            $ref: '#/components/schemas/Image'
+    CompletePlantImages:
+      type: object
+      properties:
+        id:
+          type: integer
+        num_inpn:
+          type: string
+        rank_code:
+          type: string
+        family:
+          $ref: '#/components/schemas/Family'
+        genre:
+          $ref: '#/components/schemas/Genre'
+        scientific_name:
+          type: string
+        correct_name:
+          type: string
+        french_name:
+          type: string
+        author:
+          type: string
+        publ_year:
+          type: integer
+        eflore_url:
+          type: string
+        images:
+          type: array

@@ -5,6 +5,7 @@ API non officiel et open source de la Base de données des Trachéophytes de Fra
 ## Table des matières
 
 * [À propos du projet](#à-propos-du-projet)
+* [Documentation](#documentation)
 * [Construit avec](#construit-avec)
 * [Pour commencer](#pour-commencer)
   * [Prérequis](#prérequis)
@@ -16,6 +17,10 @@ API non officiel et open source de la Base de données des Trachéophytes de Fra
 ## À propos du projet
 
 FloreAPI est une api pour obtenir des images de plante classé par plante. Les données des plantes sont tiré du site Tela botanica et les images d'Identiplante.
+
+## Documentation
+
+Voir la [documentation](https://bump.sh/instelce/doc/flore-api).
 
 ## Construit avec
 
@@ -33,10 +38,11 @@ Pour mettre en place une copie locale de l'API et de la faire fonctionner, suive
 
 ### Installation
 
-1. Cloner le repo
+1. Cloner le repo et allez dans le dossier `flore-api`
 
 ```shell
 git clone https://github.com/<Votre-Pseudo>/FloreAPI.git
+cd flore-api
 ```
 
 2. Créer un environnement virtuel et activez le
