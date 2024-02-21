@@ -6,6 +6,7 @@ set -e
 
 until nc -z proxy 80; do
     echo "Waiting for proxy..."
+    echo $(nc -z proxy 80)
     sleep 5s & wait ${!}
 done
 
