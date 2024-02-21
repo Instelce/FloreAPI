@@ -40,45 +40,46 @@ Pour mettre en place une copie locale de l'API et de la faire fonctionner, suive
 
 1. Cloner le repo et allez dans le dossier `flore-api`
 
-```shell
-git clone https://github.com/<Votre-Pseudo>/FloreAPI.git
-cd flore-api
-```
+  ```shell
+  git clone https://github.com/<Votre-Pseudo>/FloreAPI.git
+  cd flore-api
+  ```
 
 2. Créer un environnement virtuel et activez le
 
-```shell
-python -m venv env
-./env/scripts/activate
-```
+  ```shell
+  python -m venv env
+  source env/bin/activate (linux ou macos)
+  ./env/scripts/activate (windows)
+  ```
 
 3. Installer les dépendances
 
-```shell
-pip install -r requirements.txt
-```
+  ```shell
+  pip install -r requirements.txt
+  ```
 
 4. Dupliquez le fichier `.env.example` et renommez le `.env` et remplisser le.
 
 5. Créer les tables
 
-```shell
-python ./manage.py migrate
-```
+  ```shell
+  python ./manage.py migrate
+  ```
 
 6. Déziper le fichier `json_data` que vous avez télécharger et placer le dans le repo
 
 7. Remplir la bdd
 
-```shell
-python .\manage.py runscript database_filler
-```
+  ```shell
+  python .\manage.py runscript database_filler
+  ```
 
 8. Lancer le serveur de développement
 
-```shell
-python ./manage.py runserver
-```
+  ```shell
+  python ./manage.py runserver
+  ```
 
 ## Contributions
 
@@ -95,12 +96,12 @@ Les contributions que vous faites seront grandement appréciées.
 * Push vers ta branche (git push origin feature/SuperFonctionnalité)
 * Ouvre une Pull Request
 
-# Auteurs
+## Auteurs
 
 * *Célestin* - **Etudiant** - Instelce - Discord `instelce`
 
 ## Remerciements
 
-- [Tela Botanica](https://www.tela-botanica.org/)
-- [Identiplante](https://www.tela-botanica.org/appli:identiplante)
-- [BDTFX](http://referentiels.tela-botanica.org/referentiel/index.php?module=Informations&ref=bdtfx)
+* [Tela Botanica](https://www.tela-botanica.org/)
+* [Identiplante](https://www.tela-botanica.org/appli:identiplante)
+* [BDTFX](http://referentiels.tela-botanica.org/referentiel/index.php?module=Informations&ref=bdtfx)
